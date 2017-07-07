@@ -1,3 +1,3 @@
 # apriori-pandas
-simple apriori for pandas dataframe on Pythong 3.5.2
+simple apriori for pandas dataframe on Python 3.5.2
 
