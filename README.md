@@ -1,2 +1,3 @@
 # apriori-pandas
-simple apriori on pandas dataframe
+simple apriori for pandas dataframe on Pythong 3.5.2
+
