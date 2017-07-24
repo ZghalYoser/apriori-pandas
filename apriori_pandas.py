@@ -6,9 +6,12 @@
 
 #import area
 from itertools import combinations
+import math
 import collections
 import pandas as pd
 import numpy as np
+from functools import reduce
+import operator
 
 #brute force get support
 def get_support(df):
@@ -104,6 +107,41 @@ def getConfidence(a,b, suppList):
 	if(sourceSupp == 0):
 		return 0
 	return (targetSupp/sourceSupp)
+
+
+#helper to get lift
+def getLift(a,b,suppList):
+	target = []
+	source = []
+
+	targetSupp = -1
+	sourceSupp = -1
+	if (type(a) is list):
+		for i in a:
+			target.append(i)
+	else:
+		target.append(a)
+
+	source = target.copy()
+
+	if (type(b) is list):
+		for i in b:
+			target.append(i)
+	else:
+		target.append(b)
+
+	# get the support value
+	targetSupp = getSupportValue(target, suppList)
+	sourceSupp = getSupportValue(source, suppList)
+	headSupp = getSupportValue([b],suppList)
+
+	lift_value = 0
+	try:
+		lift_value = (targetSupp / (sourceSupp*headSupp))
+	except:
+		lift_value = 0
+
+	return lift_value if not math.isnan(lift_value) else 0
 
 #helper function to get support value
 def getSupportValue(a,supp):
